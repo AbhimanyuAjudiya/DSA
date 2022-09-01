@@ -1,3 +1,5 @@
+//Time complexity will be O(n²)
+
 import java.util.*;
 
 public class pairsOfArr {
