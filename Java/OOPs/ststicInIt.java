@@ -10,7 +10,7 @@ public class ststicInIt {
 class Student{
     static String schoolName;
     void setNmae(String schoolname){
-        this.schoolName = schoolName;
+        this.schoolName = schoolName; 
     }
     String getName(){
         return schoolName;
