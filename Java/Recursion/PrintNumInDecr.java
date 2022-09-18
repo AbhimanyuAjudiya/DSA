@@ -8,14 +8,7 @@ public class PrintNumInDecr {
         printNum(n-1);
     }
 
-    public static void fact(int n) {
-        if(n==1){
-            System.out.println(n);
-            return;
-        }
-        fact(n*n-1);
-    }
     public static void main(String[] args) {
-        fact(2);
+        printNum(2);
     }
 }
