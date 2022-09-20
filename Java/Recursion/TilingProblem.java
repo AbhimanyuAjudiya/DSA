@@ -7,7 +7,7 @@ public class TilingProblem {
         int fnm1 = tilingProblem(n-1);
         // checking for vertical
         int fnm2 = tilingProblem(n-2);
-
+        
         int noOfWays = fnm1 + fnm2;
         return noOfWays;
     }
