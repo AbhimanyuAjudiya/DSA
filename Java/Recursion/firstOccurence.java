@@ -1,6 +1,6 @@
 public class firstOccurence {
     public static int firstOccurence(int arr[], int key, int i) {
-        if(i >= arr.length-1){
+        if(i >= arr.length-1){ //base case
             return -1;
         }
         if(arr[i] == key){
