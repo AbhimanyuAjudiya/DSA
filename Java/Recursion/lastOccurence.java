@@ -9,6 +9,7 @@ public class lastOccurence {
         }
         return isFound;
     }
+    
     public static void main(String[] args) {
         int arr[] = {1,232,123,12,24,3,34,2,3,2,124,5,41,2,123,412,3};
         System.out.println(lastOccurence(arr, 3, 0));
