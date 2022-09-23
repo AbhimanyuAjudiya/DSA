@@ -5,7 +5,6 @@ public class TilingProblem {
         }        
         // //checking for horizontal
         // int fnm1 = tilingProblem(n-1);
-        
         // // checking for vertical
         // int fnm2 = tilingProblem(n-2);
         
