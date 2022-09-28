@@ -1,3 +1,7 @@
+
+//Time Complexity = O(nlogn)
+//Space Complexity = O(n)
+
 public class mergeSort {
     public static void printArr(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
