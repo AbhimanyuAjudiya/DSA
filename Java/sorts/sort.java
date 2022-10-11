@@ -15,6 +15,22 @@ public class sort {
         }
     }
 
+    public static void modifiedbubbleSort(int arr[]) { // Time complexity O(n²)
+        for (int i = 0; i < arr.length - 1; i++) { //why -1? Because we will compare value with front values
+            boolean swapped = false;
+            for (int j = 0; j < arr.length-1-i; j++) { //why -1? Because we will compare value with front values
+                if(arr[j] > arr[j+1]){ //swap
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                    swapped = true;
+                }
+            }
+            if(!swapped)
+                break;
+        }
+    }
+
     public static void selectionSort(int arr[]) { // Time complexity O(n²)
         for (int i = 0; i < arr.length-1; i++) {
             int minPos = i;
@@ -74,7 +90,7 @@ public class sort {
     }
     public static void main(String[] args) {
         int arr[] = {5,4,1,2,3};
-        countingSort(arr);
+        modifiedbubbleSort(arr);
         printArr(arr);
     }
 }
