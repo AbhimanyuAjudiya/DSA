@@ -190,21 +190,178 @@ public class LinkedList {
         prev.next = prev.next.next;
         return;
     }
-    public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        ll.print();
-        ll.addFirst(2);
-        ll.print();
-        ll.addFirst(1);
-        ll.print();
-        ll.addLast(3);
-        ll.print();
-        ll.addLast(4);
-        ll.addAt(2, 9);
 
-        ll.print();
-        ll.removeNThFromEnd(3);
-        ll.print();
+    public Node findMid(Node head){ //slow fast approch
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public boolean isPalindrome(){
+        if(head == null || head.next == null) return true;
+        //Step - 1 find mid
+        Node midNode = findMid(head);
+
+        //Step - 2 Reverse 2nd half of LL
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev;
+        Node left = head;
+
+        //check if 1st half == 2nd half
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
+    public static boolean isCycle(){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static void removeCycle(){
+        //detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while(fast != null && fast.next != null){
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+            if(slow == fast){
+                cycle = true;
+                break;
+            }
+        }
+        if(cycle == false){
+            return;
+        }
+
+        //find meeting point
+        slow = head;
+        Node prev = null;
+        while(slow != fast){
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        //remove cycle -> last.next = null
+        prev.next = null;
+    }
+
+
+    private Node getMid(Node head){
+        Node slow = head;
+        Node fast = head.next;
+
+        while(fast == null && fast.next == null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private Node merge(Node head1, Node head2){
+        Node mergedLL = new Node(-1);
+        Node temp = mergedLL;
+
+        while(head1 != null && head2 != null){
+            if(head1.data <= head2.data){
+                temp.next = head1;
+                head1 = head1.next;
+            }else{
+                temp.next = head2;
+                head2 = head2.next;
+            }
+            temp = temp.next;
+        }
+
+        while(head1 != null){
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+        }
+        while(head2 != null){
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
+        }
+
+        return mergedLL.next;
+    }
+
+    public Node mergeSort(Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        //find mid
+        Node mid = getMid(head);
+        //left & right MS
+        Node rightHead = mid.next;
+        mid.next = null;
+        Node newLeft = mergeSort(head);
+        Node newRight = mergeSort(rightHead);
+        //merge
+        return merge(newLeft, newRight);
+    }
+    public static void main(String[] args) {
+        // LinkedList ll = new LinkedList();
+        // ll.addFirst(1);
+        // ll.addFirst(2);
+        // ll.addFirst(3);
+        // ll.addFirst(4);
+        // // ll.addFirst(5);
+
+        // ll.print();
+        // ll.head = ll.mergeSort(ll.head);
+        // ll.print();
+
+        System.out.println(Math.abs(-1));
+        System.out.println(Math.abs(1));
+
+
+        // head = new Node(1);
+        // Node temp = new Node(2);
+        // head.next = temp;
+        // head.next.next = new Node(3);
+        // head.next.next.next = temp; // 1->2->3->2 //loop
+
+        // System.out.println(isCycle());//false
+        // removeCycle();
+        // System.out.println(isCycle());//false
+
+
+        // ll.addFirst(2);
+        // ll.print();
+        // ll.addAt(2, 9);
+        // System.out.println(ll.isPalindrome());
         // System.out.println(ll.resSearch(4));
         // System.out.println(ll.resSearch(19));
         // System.out.println(ll.size);
