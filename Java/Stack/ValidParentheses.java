@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.*;
 
 public class ValidParentheses {
 
@@ -43,7 +43,21 @@ public class ValidParentheses {
         return valid;
     }
     public static void main(String[] args) {
-        String str = "{}{}{}{{}()()((()))";
-        System.out.println(isValid(str));
+        // String str = "{}{}{}{{}()()((()))";
+        char[] arr1 = {'a', 'b', 'c'};
+        char[] arr2 = {'b', 'a', 'c'};
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr2[i]);
+        }
+        Arrays.sort(arr2);
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr2[i]);
+        }
+        // if(arr1 == arr2){
+        //     System.out.println(true);
+        // } else {
+        //     System.out.println(false);
+        // }
+        // System.out.println(isValid(str));
     }
 }
