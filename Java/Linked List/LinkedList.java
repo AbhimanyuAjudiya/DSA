@@ -380,7 +380,8 @@ public class LinkedList {
         ll.print();
         ll.zigzag();
         ll.print();
-
+        ll.zigzag();
+        ll.print();
 
         // head = new Node(1);
         // Node temp = new Node(2);
