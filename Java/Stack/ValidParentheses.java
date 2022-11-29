@@ -27,9 +27,8 @@ public class ValidParentheses {
                             stack.pop();
                         }
                         else{
-                           return false; 
-                        }
-                        
+                           return false;
+                        } 
                     }
                 }
             }

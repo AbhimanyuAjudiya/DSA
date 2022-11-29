@@ -1,7 +1,6 @@
 import java.util.Stack;
 
 public class NextGreater {
-
     public static void nextGreater(int arr[]){
         Stack<Integer> s = new Stack<>();
         int nextGreater[] = new int[arr.length];
