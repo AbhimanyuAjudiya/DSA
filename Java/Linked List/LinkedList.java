@@ -18,8 +18,6 @@ public class LinkedList {
     public static Node tail;
     public static int size;
 
-
-    
     //--------------------- Add --------------------------
     public void addFirst(int data){ // O(1)
         // Step 1 : Create new node
