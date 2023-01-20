@@ -1,5 +1,6 @@
 import javax.crypto.MacSpi;
 
+
 public class abstractInIt {
     public static void main(String[] args) {
         dog tommy = new dog();

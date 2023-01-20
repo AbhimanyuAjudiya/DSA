@@ -1,6 +1,19 @@
 public class interfaceInIt {
     public static void main(String[] args) {
-        
+        bear b1 = new bear();
+        b1.eat();
+    }
+}
+
+interface herbivor{
+    void eat();
+}
+interface carnivor{
+    void eat();
+}
+class bear implements herbivor, carnivor{
+    public void eat(){
+        System.out.println("Eats grass and met");
     }
 }
 
