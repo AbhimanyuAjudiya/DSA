@@ -14,7 +14,7 @@ public class diagonalSum {
     //     return sum;
     // }
 
-    public static int diagonalSum(int matrix[][]) {  //Time complexity O(n)
+    public static int diagonalS(int matrix[][]) {  //Time complexity O(n)
         int sum = 0;
         for (int i = 0; i < matrix.length; i++) {
             sum+=matrix[i][i]; //PD - Primary Diagonal
@@ -30,6 +30,6 @@ public class diagonalSum {
                           { 5, 6, 7, 8}, //SD = 4+7+10+11 = 34 
                           { 9,10,11,12}, 
                           {13,14,15,16}};
-        System.out.println(diagonalSum(matrix)); //Total = 34+34 = 68
+        System.out.println(diagonalS(matrix)); //Total = 34+34 = 68
     }
 }

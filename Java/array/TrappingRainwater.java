@@ -1,8 +1,8 @@
-import java.util.*;
+
 
 public class TrappingRainwater {
 
-    public static int TrappingRainwater(int height[]){ //Time complexity = O(n)
+    public static int Trappingwater(int height[]){ //Time complexity = O(n)
         int n = height.length;
         // calculate left max boundary - array
         int leftMax[] = new int[n];
@@ -32,6 +32,6 @@ public class TrappingRainwater {
     }
     public static void main(String[] args) {
         int height[] = {4,2,0,6,3,2,5};
-        System.out.println(TrappingRainwater(height));
+        System.out.println(Trappingwater(height));
     }
 }
