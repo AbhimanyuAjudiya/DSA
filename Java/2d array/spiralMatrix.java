@@ -10,7 +10,6 @@ public class spiralMatrix {
             for (int j = startCol; j <= endCol; j++) {
                 System.out.print(matrix[startRow][j] + " ");
             }
-
             //Right = Printing endCol
             for (int i = startRow; i <= endRow; i++) {
                 System.out.print(matrix[i][endCol] + " ");
