@@ -29,13 +29,10 @@ public class mergeSort {
 
         while(i <= mid && j <= ei){
             if(arr[i] < arr[j]){
-                temp[k] = arr[i];
-                i++;
+                temp[k++] = arr[i++];
             } else {
-                temp[k] = arr[j];
-                j++;
+                temp[k++] = arr[j++];
             }
-            k++;
         }
 
         while(i <= mid){  //for remaining part of arr on left side
