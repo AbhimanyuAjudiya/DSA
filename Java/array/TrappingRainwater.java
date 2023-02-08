@@ -1,5 +1,3 @@
-
-
 public class TrappingRainwater {
 
     public static int Trappingwater(int height[]){ //Time complexity = O(n)
