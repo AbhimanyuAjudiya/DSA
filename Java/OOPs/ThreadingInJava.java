@@ -19,7 +19,7 @@ class MyThreat2 extends Thread{
 
 public class ThreadingInJava {
     public static void main(String[] args) {
-        MyThreat1 t1 = new MyThreat1();
-        MyThreat2 t2 = new MyThreat2();
+        // MyThreat1 t1 = new MyThreat1();
+        // MyThreat2 t2 = new MyThreat2();
     }
 }
