@@ -129,6 +129,7 @@ public class ArrImple {
         q.add(1);
         q.add(2);
         q.add(3);
+        System.out.println("This is peek:" + q.peek());
         while(!q.isEmpty()){
             System.out.println(q.remove());
         }
