@@ -12,23 +12,21 @@ public class StackImple {
         }
 
         public static void add(int data){
+            s1.push(data);
+        }
+
+        public static int remove(){
             while(!s1.isEmpty()) {
                 s2.push(s1.pop());
             }
-
-            s1.push(data);
+            
+            int front = s2.peek();
+            s2.pop();
 
             while(!s2.isEmpty()){
                 s1.push(s2.pop());
             }
-        }
-
-        public static int remove(){
-            if(isEmpty()){
-                System.out.println("Queue is empty");
-                return -1;
-            }
-            return s1.pop();
+            return front;
         }
 
         public static int peek(){
