@@ -83,6 +83,7 @@ public class StackImple {
         q.add(1);
         q.add(2);
         q.add(3);
+        System.out.println(q.peek());
         while(!q.isEmpty()){
             System.out.println(q.remove());
         }
