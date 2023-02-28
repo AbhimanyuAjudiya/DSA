@@ -21,7 +21,7 @@ public class IndeanCoins {
     }
     public static void main(String[] args) {
         Integer coins[] = {1,2,5,10,20,50,100,500,2000};
-        int amount = 590;
+        int amount = 2898;
         valueOfCoins(coins, amount);
     }
 }
