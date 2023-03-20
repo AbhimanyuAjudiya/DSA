@@ -88,15 +88,60 @@ public class BTBuild {
             }
         }
     }
+
+    public static int heightOfTree(Node root){// O(n)
+        if(root == null){
+            return 0;
+        }
+        int lh = heightOfTree(root.left);
+        int rh = heightOfTree(root.right);
+        return Math.max(lh, rh)+1;
+    }
+
+    public static int countOfNodes(Node root){// O(n)
+        if(root == null){
+            return 0;
+        }
+        int lc = countOfNodes(root.left);
+        int rc = countOfNodes(root.right);
+        return lc + rc + 1;
+    }
+
+    public static int sumOfNodes(Node root){// O(n)
+        if(root == null){
+            return 0;
+        }
+        int ls = sumOfNodes(root.left);
+        int rs = sumOfNodes(root.right);
+        return ls + rs + root.data;
+    }
     public static void main(String[] args) {
-        int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
-        BinaryTree bt = new BinaryTree();
-        Node root = bt.buildTree(nodes);
+        // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        // BinaryTree bt = new BinaryTree();
+        // Node root = bt.buildTree(nodes);
         // System.out.println(root.data);
         // bt.preOrder(root);
         // bt.inOrder(root);
         // bt.postOrder(root);
-        bt.levelOrder(root);
-        System.out.println();
+        // bt.levelOrder(root);
+        // System.out.println();
+
+      
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+          /*
+                    1
+                   / \
+                  2   3
+                 / \ / \
+                4  5 6  7
+         */
+        System.out.println(sumOfNodes(root));
+
     }    
 }
