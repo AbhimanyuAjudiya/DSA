@@ -1,5 +1,7 @@
 import java.util.*;
-import java.util.LinkedList;;
+import java.util.LinkedList;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;;
 
 public class BTBuild {
 
@@ -115,6 +117,18 @@ public class BTBuild {
         int rs = sumOfNodes(root.right);
         return ls + rs + root.data;
     }
+
+    public static int diameter(Node root){// O(n^2) due to height we are calculating height every time So on every nth node we take n time so tc = n * n = n^2
+        if(root == null) return 0;
+        int leftDia = diameter(root.left);
+        int leftHt = heightOfTree(root.left);
+        int rightDia = diameter(root.right);
+        int rightHt = heightOfTree(root.right);
+        
+        int selfDia = leftHt + rightHt + 1;
+        
+        return Math.max(selfDia, Math.max(leftDia, rightDia));
+    }
     public static void main(String[] args) {
         // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         // BinaryTree bt = new BinaryTree();
@@ -140,7 +154,8 @@ public class BTBuild {
                  / \ / \
                 4  5 6  7
          */
-        System.out.println(sumOfNodes(root));
+        // System.out.println(sumOfNodes(root));
+        System.out.println(diameter(root));
 
     }    
 }
