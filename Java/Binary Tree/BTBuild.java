@@ -159,7 +159,7 @@ public class BTBuild {
             return false;
         }
 
-        //now chaeck for left
+        //now chaeck for left and right
         if(!isIdentical(node.left, subRoot.left)){
             return false;
         }
