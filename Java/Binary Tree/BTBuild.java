@@ -267,6 +267,35 @@ public class BTBuild {
         }
         System.out.println();
     }
+
+    public static void kthLevelItr(Node root, int k){
+        Queue<Node> q = new LinkedList<>();
+        int count = 1;
+        q.add(root);
+        q.add(null);
+        while(!q.isEmpty()){
+            Node currNode = q.remove();
+            if(currNode == null){
+                count++;
+                if(q.isEmpty()){
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                if(count == k){
+                    System.out.print(currNode.data+" ");
+                }
+                if(currNode.left != null){
+                    q.add(currNode.left);
+                }
+                if(currNode.right != null){
+                    q.add(currNode.right);
+                }   
+            }
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -276,16 +305,18 @@ public class BTBuild {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-          /*
-                    1
-                   / \
-                  2   3
-                 / \ / \
-                4  5 6  7
-         */
+        /*
+                 1
+                / \
+               2   3
+              / \ / \
+             4  5 6  7
+        */
 
-        topView(root);
-        bottumView(root);
+        kthLevelItr(root, 2);
+
+        // topView(root);
+        // bottumView(root);
 
         // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         // BinaryTree bt = new BinaryTree();
