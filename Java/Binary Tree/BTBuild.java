@@ -229,6 +229,44 @@ public class BTBuild {
         }
         System.out.println();
     }
+
+    public static void bottumView(Node root){
+        Queue<ViewInfo> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+
+        int min = 0,max = 0;
+
+        q.add(new ViewInfo(root, 0));
+        q.add(null);
+
+        while(!q.isEmpty()){
+            ViewInfo curr = q.remove();
+            if(curr == null){
+                if(q.isEmpty()){
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+
+                map.put(curr.hd, curr.node);
+    
+                if(curr.node.left != null){
+                    q.add(new ViewInfo(curr.node.left, curr.hd-1));
+                    min = Math.min(min, curr.hd-1);
+                }
+    
+                if(curr.node.right != null){
+                    q.add(new ViewInfo(curr.node.right, curr.hd+1));
+                    max = Math.max(max, curr.hd+1);
+                }
+            }
+        }
+        for(int i = min; i <= max; i++){
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -247,6 +285,7 @@ public class BTBuild {
          */
 
         topView(root);
+        bottumView(root);
 
         // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         // BinaryTree bt = new BinaryTree();
