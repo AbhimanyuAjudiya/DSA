@@ -296,6 +296,17 @@ public class BTBuild {
         }
         System.out.println();
     }
+
+    public static void kthLevelRec(Node root, int level, int k){
+        if(root == null) {
+            return;
+        }
+        if(level == k) {
+            System.out.print(root.data+" ");
+        }
+        kthLevelRec(root.left, level+1, k);
+        kthLevelRec(root.right, level+1, k);
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -312,8 +323,9 @@ public class BTBuild {
               / \ / \
              4  5 6  7
         */
-
-        kthLevelItr(root, 2);
+        kthLevelRec(root, 1, 3);
+        System.out.println();
+        kthLevelItr(root, 3);
 
         // topView(root);
         // bottumView(root);
