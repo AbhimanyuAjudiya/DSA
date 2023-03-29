@@ -1,7 +1,6 @@
 import java.util.*;
 import java.util.LinkedList;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;;
 
 public class BTBuild {
 
@@ -180,17 +179,58 @@ public class BTBuild {
 
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
-    public static void main(String[] args) {
-        // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
-        // BinaryTree bt = new BinaryTree();
-        // Node root = bt.buildTree(nodes);
-        // System.out.println(root.data);
-        // bt.preOrder(root);
-        // bt.inOrder(root);
-        // bt.postOrder(root);
-        // bt.levelOrder(root);
-        // System.out.println();
 
+
+    static class ViewInfo{
+        Node node;
+        int hd;//Horizontal Distance
+
+        public ViewInfo(Node node, int hd){
+            this.node = node;
+            this.hd = hd;
+        }
+    }
+    public static void topView(Node root){
+        Queue<ViewInfo> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+
+        int min = 0,max = 0;
+
+        q.add(new ViewInfo(root, 0));
+        q.add(null);
+
+        while(!q.isEmpty()){
+            ViewInfo curr = q.remove();
+            if(curr == null){
+                if(q.isEmpty()){
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+
+                if(!map.containsKey(curr.hd)){
+                    map.put(curr.hd, curr.node);
+                }
+    
+                if(curr.node.left != null){
+                    q.add(new ViewInfo(curr.node.left, curr.hd-1));
+                    min = Math.min(min, curr.hd-1);
+                }
+    
+                if(curr.node.right != null){
+                    q.add(new ViewInfo(curr.node.right, curr.hd+1));
+                    max = Math.max(max, curr.hd+1);
+                }
+            }
+        }
+        for(int i = min; i <= max; i++){
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
@@ -206,18 +246,30 @@ public class BTBuild {
                 4  5 6  7
          */
 
-        Node subRoot = new Node(2);
-        subRoot.left = new Node(4);
-        subRoot.right = new Node(5);
-        /*
-                2
-               / \ 
-              4   5 
-         */
+        topView(root);
+
+        // int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        // BinaryTree bt = new BinaryTree();
+        // Node root = bt.buildTree(nodes);
+        // System.out.println(root.data);
+        // bt.preOrder(root);
+        // bt.inOrder(root);
+        // bt.postOrder(root);
+        // bt.levelOrder(root);
+        // System.out.println();
+
+        // Node subRoot = new Node(2);
+        // subRoot.left = new Node(4);
+        // subRoot.right = new Node(5);
+        // /*
+        //         2
+        //        / \ 
+        //       4   5 
+        //  */
 
         // System.out.println(sumOfNodes(root));
         // System.out.println(optmizedDiameter(root).dia);
-        System.out.println(isSubtree(root, subRoot));
+        // System.out.println(isSubtree(root, subRoot));
 
     }    
 }
