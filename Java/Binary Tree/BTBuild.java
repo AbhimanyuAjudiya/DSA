@@ -307,6 +307,46 @@ public class BTBuild {
         kthLevelRec(root.left, level+1, k);
         kthLevelRec(root.right, level+1, k);
     }
+
+    public static boolean getPath(Node root, int n, Stack<Node> path){
+        if(root == null) {
+            return false;
+        }
+
+        path.add(root);
+
+        if(root.data == n){
+            return true;
+        }
+
+        boolean foundLeft = getPath(root.left, n, path);
+        boolean foundRight = getPath(root.right, n, path);
+
+        if(foundLeft || foundRight){
+            return true;
+        }
+        path.pop();
+
+        return false;
+    }
+
+    public static Node lca(Node root, int n1, int n2){
+        Stack<Node> path1 = new Stack<>();
+        Stack<Node> path2 = new Stack<>();
+
+        getPath(root, n1, path1);
+        getPath(root, n2, path2);
+
+        while(!path1.isEmpty() && !path2.isEmpty()){
+            if(path1.peek() == path2.peek()){
+                break;
+            }
+            path1.pop();
+            path2.pop();
+        }
+
+        return path1.peek();
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -323,9 +363,10 @@ public class BTBuild {
               / \ / \
              4  5 6  7
         */
-        kthLevelRec(root, 1, 3);
-        System.out.println();
-        kthLevelItr(root, 3);
+        System.out.println(lca(root, 4, 5).data);
+        // kthLevelRec(root, 1, 3);
+        // System.out.println();
+        // kthLevelItr(root, 3);
 
         // topView(root);
         // bottumView(root);
