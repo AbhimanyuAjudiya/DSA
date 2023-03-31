@@ -362,7 +362,6 @@ public class BTBuild {
         if(rightLca == null){
             return leftLca;
         }
-
         return root;
     }
     public static void main(String[] args) {
