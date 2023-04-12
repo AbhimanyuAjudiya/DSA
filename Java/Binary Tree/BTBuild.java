@@ -364,6 +364,35 @@ public class BTBuild {
         }
         return root;
     }
+
+    public static int dist(Node root, int n){
+        if(root == null){
+            return -1;
+        }
+
+        if(root.data == n){
+            return 0;
+        }
+
+        int leftDist = dist(root.left, n);
+        int rightDist = dist(root.right, n);
+
+        if(leftDist == -1 && rightDist == -1){
+            return -1;
+        } else if(leftDist == -1){
+            return rightDist + 1;
+        } else {
+            return leftDist + 1;
+        }
+        
+    }
+
+    public static int minDist(Node root, int n1, int n2){
+        Node lca = lca2(root, n1, n2);
+        int d1 = dist(lca, n1);
+        int d2 = dist(lca, n2);
+        return d1+d2;
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -380,7 +409,10 @@ public class BTBuild {
               / \ / \
              4  5 6  7
         */
-        System.out.println(lca2(root, 4, 7).data);
+
+        System.out.println(minDist(root, 4, 6));
+
+        // System.out.println(lca2(root, 4, 7).data);
         // kthLevelRec(root, 1, 3);
         // System.out.println();
         // kthLevelItr(root, 3);

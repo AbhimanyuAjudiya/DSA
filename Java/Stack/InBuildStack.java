@@ -12,6 +12,7 @@ public class InBuildStack {
             System.out.print(s.peek() + " ");
             s.pop();
         }
+        s.pop();
         System.out.println();
     }
 }
