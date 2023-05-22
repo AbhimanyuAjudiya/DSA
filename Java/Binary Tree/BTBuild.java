@@ -393,6 +393,46 @@ public class BTBuild {
         int d2 = dist(lca, n2);
         return d1+d2;
     }
+
+    public static int kAnsister(Node root, int n, int k){
+        if(root == null){
+            return -1;
+        }
+        if(root.data == n){
+            return 0;
+        }
+        int leftDist = kAnsister(root.left, n, k);
+        int rightDist = kAnsister(root.right, n, k);
+        if(leftDist == -1 && rightDist == -1){
+            return -1;
+        }
+        int max = Math.max(leftDist, rightDist);
+        if(max + 1 == k){
+            System.out.println(root.data);
+        }
+        return max+1;
+
+    }
+
+    public static int transform(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftChild = transform(root.left);
+        int rightChild = transform(root.right);
+
+        int rootData = root.data;
+        root.data = (root.left == null ? 0 : root.left.data)+ leftChild + (root.right == null ? 0 : root.right.data) + rightChild;
+        return rootData;
+    }
+    public static void preorder(Node root){
+        if(root == null){
+            return;
+        }
+        System.out.println(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
     public static void main(String[] args) {
         
         Node root = new Node(1);
@@ -410,7 +450,12 @@ public class BTBuild {
              4  5 6  7
         */
 
-        System.out.println(minDist(root, 4, 6));
+        transform(root);
+        preorder(root);
+
+        // kAnsister(root, 4, 1);
+
+        // System.out.println(minDist(root, 4, 6));
 
         // System.out.println(lca2(root, 4, 7).data);
         // kthLevelRec(root, 1, 3);
