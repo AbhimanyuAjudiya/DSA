@@ -129,12 +129,26 @@ public class BSTSearch {
         return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
     }
 
+    public static Node mirrorOfBST(Node root){
+        if(root == null){
+            return null;
+        }
+        Node left = mirrorOfBST(root.left);
+        Node right = mirrorOfBST(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+
     public static void main(String[] args) {
         int val[] = {8,5,3,1,4,6,10,11,14};
         Node root = null;
         for (int i = 0; i < val.length; i++) {
             root = insert(root, val[i]);
         }        
+        inOrder(root);
+        System.out.println();
+        mirrorOfBST(root);
         inOrder(root);
         System.out.println();
         // System.out.println(search(root, 6));
