@@ -48,8 +48,39 @@ public class BSTSearch {
         }
     }
 
+    public static Node delete(Node root, int val){
+        if(root.data < val){
+            root.right = delete(root.right, val);
+        }else if(root.data > val){
+            root.left = delete(root.left, val);
+        }else{
+            // case 1 - leaf node
+            if(root.left == null && root.right == null){
+                return null;
+            }
+            // case 2 - single child
+            if(root.left == null){
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+            // case 3 - both child
+            Node IS = findInorderSuccessor(root.right);
+            root.data = IS.data;
+            root.right = delete(root.right, IS.data);
+        }
+        return root;
+    }
+
+    public static Node findInorderSuccessor(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
-        int val[] = {5,1,3,4,2,7};
+        int val[] = {8,5,3,1,4,6,10,11,14};
         Node root = null;
         for (int i = 0; i < val.length; i++) {
             root = insert(root, val[i]);
@@ -57,5 +88,9 @@ public class BSTSearch {
         inOrder(root);
         System.out.println();
         System.out.println(search(root, 6));
+
+        delete(root, 3);
+        inOrder(root);
+        System.out.println();
     }
 }
