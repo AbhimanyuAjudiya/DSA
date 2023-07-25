@@ -140,20 +140,43 @@ public class BSTSearch {
         return root;
     }
 
-    public static void main(String[] args) {
-        int val[] = {8,5,3,1,4,6,10,11,14};
-        Node root = null;
-        for (int i = 0; i < val.length; i++) {
-            root = insert(root, val[i]);
-        }        
-        inOrder(root);
-        System.out.println();
-        mirrorOfBST(root);
-        inOrder(root);
-        System.out.println();
-        // System.out.println(search(root, 6));
+    public static Node createBalancedBST(int[] arr, int start, int end){
+        if(start > end){
+            return null;
+        }
 
-        System.out.println(isValidBST(root, null, null));
+        int mid = (start+end)/2;
+
+        Node root = new Node(arr[mid]);
+        root.left = createBalancedBST(arr, start, mid-1);
+        root.right = createBalancedBST(arr, mid+1, end);
+
+        return root;
+        
+    }
+
+    public static void preOrder(Node root){
+        if(root == null) return;
+
+        System.out.print(root.data+" ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+
+    public static void main(String[] args) {
+        // int val[] = {8,5,3,1,4,6,10,11,14};
+        // Node root = null;
+        // for (int i = 0; i < val.length; i++) {
+        //     root = insert(root, val[i]);
+        // }        
+        // inOrder(root);
+        // System.out.println();
+        // mirrorOfBST(root);
+        // inOrder(root);
+        // System.out.println();
+        // // System.out.println(search(root, 6));
+
+        // System.out.println(isValidBST(root, null, null));
 
         // rootToPath(root, new ArrayList<>());
 
@@ -161,5 +184,10 @@ public class BSTSearch {
         // delete(root, 3);
         // inOrder(root);
         // System.out.println();
+
+        int arr[] = {1,2,3,4,5,6,7,8,9};
+
+        Node root = createBalancedBST(arr, 0, arr.length-1);
+        preOrder(root);
     }
 }
