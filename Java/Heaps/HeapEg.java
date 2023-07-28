@@ -14,6 +14,9 @@ public class HeapEg {
                 int temp = arr.get(childIndex);
                 arr.set(childIndex, arr.get(parentIndex));
                 arr.set(parentIndex, temp);
+
+                childIndex = parentIndex;
+                parentIndex = (childIndex - 1) / 2;
             }
         }
 
