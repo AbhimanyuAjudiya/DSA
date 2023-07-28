@@ -18,13 +18,12 @@ import java.util.PriorityQueue;
 }
 public class PriorityQ {
     public static void main(String[] args) {
-        PriorityQueue<Students3> pq = new PriorityQueue<>();
         // e -> 1
         // c -> 4
         // b -> 5
         // a -> 8
         // d -> 10
-        // PriorityQueue<Students3> pq = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Students3> pq = new PriorityQueue<>(Comparator.reverseOrder());
         // d -> 10
         // a -> 8
         // b -> 5
