@@ -10,6 +10,7 @@ public class InBuildLL {
         System.out.println(ll);
         ll.removeLast();
         ll.removeFirst();
+        ll.isEmpty();
         System.out.println(ll);
     }
 }
