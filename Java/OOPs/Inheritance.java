@@ -5,7 +5,7 @@ public class Inheritance {
     }
     
 }
-class Animal{
+class Animal1{
     String  color;
     void eat(){
         System.out.println("eats");

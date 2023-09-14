@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class LargestSubArraySum {
     public static void main(String[] args) {
-        int arr[] = {15,-2,2,-8,1,7,10,23};
+        int arr[] = {15,-2,2,-8,1,7,10};
 
         HashMap<Integer, Integer> map = new HashMap<>();
         //sum , indx
@@ -17,6 +17,6 @@ public class LargestSubArraySum {
                 map.put(sum, i);
             }
         }
-        System.out.println("Largest sum of subarray is " + len);
+        System.out.println("Largest length of subarray is " + len);
     }
 }

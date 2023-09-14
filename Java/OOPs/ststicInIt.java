@@ -7,7 +7,7 @@ public class ststicInIt {
     }
 }
 
-class Student{
+class Student10{
     String schoolName;
     void setNmae(String name){
         schoolName = name; 
