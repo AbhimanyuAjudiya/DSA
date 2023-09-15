@@ -1,5 +1,4 @@
-public class ImpTries {
-
+public class SearchPrifix {
     public static class Node {
         Node children[] = new Node[26];
         boolean eow = false; //End of word
@@ -10,7 +9,6 @@ public class ImpTries {
             }
         }
     }
-
     public static Node root = new Node();
 
     public static void insert(String word){
@@ -24,7 +22,6 @@ public class ImpTries {
         }
         curr.eow = true;
     }
-
     public static boolean search(String key){
         Node curr = root;
         for(int level = 0; level < key.length(); level++){
@@ -37,23 +34,23 @@ public class ImpTries {
         return curr.eow == true;
     }
 
-    public static boolean wordBreakProblem(String key){
-        if(key.length() == 0) return true;
-
-        for(int i = 1; i <= key.length(); i++){
-            if(search(key.substring(0,i)) && wordBreakProblem(key.substring(i))){
-                return true;
+    public static boolean startWith(String prifix){
+        Node temp = root;
+        for (int i = 0; i < prifix.length(); i++) {
+            int idx = prifix.charAt(i) - 'a';
+            if(temp.children[idx] == null){
+                return false;
             }
+            temp = temp.children[idx];
         }
-
-        return false;
+        return true;
     }
+
     public static void main(String[] args) {
-        String[] word = {"i", "like", "sam", "samsung", "mobile"};
-        for (int i = 0; i < word.length; i++) {
-            insert(word[i]);
+        String[] str = {"abc", "bhc", "bhs", "aads"};
+        for (int i = 0; i < str.length; i++) {
+            insert(str[i]);
         }
-        System.out.println();
-        System.out.println(wordBreakProblem("ilikesamsung"));
+        System.out.println(startWith("aa"));
     }
 }
