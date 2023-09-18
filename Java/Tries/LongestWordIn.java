@@ -60,5 +60,6 @@ public class LongestWordIn {
         }
         longestWord(root, new StringBuilder(""));
         System.out.println(ans);
+        System.out.println();
     }    
 }
