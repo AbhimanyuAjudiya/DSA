@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
-import javax.swing.GrayFilter;
+import java.util.Stack;
 
 public class graphImpl {
     static class Edge{
@@ -163,6 +162,33 @@ public class graphImpl {
         }
         stack[curr] = false;
         return false;
+    }
+
+    public static void topShortDfs(ArrayList<Edge>[] graph){
+        boolean isVis[] = new boolean[graph.length];
+        Stack<Integer> s = new Stack<>();
+
+        for (int i = 0; i < graph.length; i++) {
+            if(!isVis[i]){
+                topShortUtil(graph, i, isVis, s);
+            }
+        }
+        
+        while(!s.isEmpty()){
+            System.out.println(s.pop());
+        }
+    }
+
+    public static void topShortUtil(ArrayList<Edge>[] graph, int curr, boolean[] isVis, Stack s){
+        isVis[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if(!isVis[e.dest]){
+                topShortUtil(graph, e.dest, isVis, s);
+            }
+        }
+        s.push(curr);
     }
     public static void main(String[] args) {
         int V = 5;
