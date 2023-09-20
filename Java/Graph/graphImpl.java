@@ -224,37 +224,53 @@ public class graphImpl {
         }
         System.out.println();
     }
+
+    public static void printAllPath(ArrayList<Edge>[] graph, int src, int dest, String path){
+        if(src == dest){
+            System.out.println(path+src);
+            return;
+        }
+
+        for (int i = 0; i < graph[src].size(); i++) {
+            Edge e = graph[src].get(i);
+            printAllPath(graph, e.dest, dest, path+src);
+        }
+    }
     public static void main(String[] args) {
-        int V = 5;
-        ArrayList<Edge>[] graph = new ArrayList[V];//array of arraylist which is empty and we will now fill it
+        ArrayList<Edge>[] graph = new ArrayList[6];//array of arraylist which is empty and we will now fill it
 
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
         //0 - vertex
-        graph[0].add(new Edge(0, 1, 5));
+        graph[0].add(new Edge(0, 3, 5));
 
-        //1 - vertex
-        graph[1].add(new Edge(1, 0, 5));
-        graph[1].add(new Edge(1, 2, 1));
-        graph[1].add(new Edge(1, 3, 3));
+        // //1 - vertex
+        // graph[1].add(new Edge(1, 0, 5));
+        // graph[1].add(new Edge(1, 2, 1));
+        // graph[1].add(new Edge(1, 3, 3));
 
         //2 - vertex
-        graph[2].add(new Edge(2, 1, 1));
+        // graph[2].add(new Edge(2, 1, 1));
         graph[2].add(new Edge(2, 3, 1));
-        graph[2].add(new Edge(2, 4, 2));
+        // graph[2].add(new Edge(2, 4, 2));
 
         //3 - vertex
         graph[3].add(new Edge(3, 1, 3));
-        graph[3].add(new Edge(3, 2, 1));
+        // graph[3].add(new Edge(3, 2, 1));
 
         //4 - vertex
-        graph[4].add(new Edge(4, 2, 2));
+        graph[4].add(new Edge(4, 0, 2));
+        graph[4].add(new Edge(4, 1, 2));
+
+        graph[5].add(new Edge(5, 0, 1));
+        graph[5].add(new Edge(5, 2, 1));
 
         // bfs(graph);
         // dfs(graph, 0, new boolean[V]);
         // System.out.println(hasPath(graph, 0, 4, new boolean[V]));
+        printAllPath(graph, 5, 1, "");
         System.out.println(dectectCycleInUnDirGraph(graph));
     }
 }
