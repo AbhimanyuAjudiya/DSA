@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -236,6 +237,59 @@ public class graphImpl {
             printAllPath(graph, e.dest, dest, path+src);
         }
     }
+
+    static class Pair implements Comparable<Pair>{
+        int n;
+        int path;
+
+        Pair(int n, int path){
+            this.n = n;
+            this.path = path;
+        }
+
+        @Override
+        public int compareTo(Pair p2){
+            return this.path - p2.path;//path based shorting for pairs
+        }
+    }
+
+    public static void dijkstra(ArrayList<Edge>[] graph, int src){// O(v + logv)
+        int dist[] = new int[graph.length]; // dest between src to i
+        for (int i = 0; i < graph.length; i++) {
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        boolean isVis[] = new boolean[graph.length];
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        pq.add(new Pair(src, 0));
+
+        while(!pq.isEmpty()){
+            Pair curr = pq.remove();
+            if(!isVis[curr.n]){
+                isVis[curr.n] = true;
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.wt;
+
+                    if(dist[u]+wt < dist[v]){
+                        dist[v] = dist[u]+wt;
+                        pq.add(new Pair(v, dist[v]));
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < dist.length; i++) {
+            System.out.print(dist[i] + " ");
+        }
+        System.out.println();
+
+    }
     public static void main(String[] args) {
         ArrayList<Edge>[] graph = new ArrayList[6];//array of arraylist which is empty and we will now fill it
 
@@ -271,6 +325,6 @@ public class graphImpl {
         // dfs(graph, 0, new boolean[V]);
         // System.out.println(hasPath(graph, 0, 4, new boolean[V]));
         printAllPath(graph, 5, 1, "");
-        System.out.println(dectectCycleInUnDirGraph(graph));
+        // System.out.println(dectectCycleInUnDirGraph(graph));
     }
 }
