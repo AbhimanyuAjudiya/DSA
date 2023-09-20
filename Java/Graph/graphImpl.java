@@ -288,7 +288,36 @@ public class graphImpl {
             System.out.print(dist[i] + " ");
         }
         System.out.println();
+    }
 
+    public static void bellmanFord(ArrayList<Edge>[] graph, int src){// O(v + logv)
+        int dist[] = new int[graph.length]; // dest between src to i
+        for (int i = 0; i < graph.length; i++) {
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+        int V = graph.length;
+
+        for (int i = 0; i < V-1; i++) {
+            for (int j = 0; j < graph.length; j++) {
+                for (int k = 0; k < graph[j].size(); k++) {
+                    Edge e = graph[j].get(k);
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.wt;
+                    if(dist[u] != Integer.MAX_VALUE && dist[u]+wt < dist[v]){
+                        dist[v] = dist[u]+wt;
+                    }
+                }
+            }
+        }
+        
+
+        for (int i = 0; i < dist.length; i++) {
+            System.out.print(dist[i] + " ");
+        }
+        System.out.println();
     }
     public static void main(String[] args) {
         ArrayList<Edge>[] graph = new ArrayList[6];//array of arraylist which is empty and we will now fill it
@@ -324,7 +353,8 @@ public class graphImpl {
         // bfs(graph);
         // dfs(graph, 0, new boolean[V]);
         // System.out.println(hasPath(graph, 0, 4, new boolean[V]));
-        printAllPath(graph, 5, 1, "");
+        // printAllPath(graph, 5, 1, "");
+        bellmanFord(graph, 2);
         // System.out.println(dectectCycleInUnDirGraph(graph));
     }
 }
