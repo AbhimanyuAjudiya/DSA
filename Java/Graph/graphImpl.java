@@ -190,6 +190,40 @@ public class graphImpl {
         }
         s.push(curr);
     }
+
+    public static void calIndegree(ArrayList<Edge>[] graph, int inDeg[]){
+        for (int i = 0; i < graph.length; i++) {
+            for (int j = 0; j < graph[i].size(); j++) {
+                Edge e = graph[i].get(j);
+                inDeg[e.dest]++;
+            }
+        }
+    }
+
+    public static void topShortBfs(ArrayList<Edge>[] graph){
+        int inDeg[] = new int[graph.length];
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < inDeg.length; i++) {
+            if(inDeg[i] == 0){
+                q.add(i);
+            }
+        }
+
+        while(!q.isEmpty()){
+            int curr = q.remove();
+            System.out.print(curr + " ");
+
+            for (int i = 0; i < graph[curr].size(); i++) {
+                Edge e = graph[curr].get(i);
+                inDeg[e.dest]--;
+                if(inDeg[e.dest] == 0){
+                    q.add(e.dest);
+                }
+            }
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         int V = 5;
         ArrayList<Edge>[] graph = new ArrayList[V];//array of arraylist which is empty and we will now fill it
