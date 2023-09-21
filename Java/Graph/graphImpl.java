@@ -319,6 +319,25 @@ public class graphImpl {
         }
         System.out.println();
     }
+
+    public static void mst(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        pq.add(new Pair(0, 0));
+        int finalW = 0;
+        while(!pq.isEmpty()){
+            Pair curr = pq.remove();
+            if(!vis[curr.n]){
+                vis[curr.n] = true;
+                finalW += curr.path;
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
+                    pq.add(new Pair(e.dest, e.wt));
+                }
+            }
+        }
+        System.out.println(finalW);
+    }
     public static void main(String[] args) {
         ArrayList<Edge>[] graph = new ArrayList[6];//array of arraylist which is empty and we will now fill it
 
