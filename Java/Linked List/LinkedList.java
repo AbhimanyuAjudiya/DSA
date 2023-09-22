@@ -161,7 +161,7 @@ public class LinkedList {
         head = prev;
     }
 
-    public void removeNThFromEnd(int n){
+    public void removeNTh(int n){
         int sz = 0;
         Node temp = head;
         while(temp != null){
