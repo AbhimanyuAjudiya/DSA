@@ -344,36 +344,50 @@ public class graphImpl {
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
-
-        //0 - vertex
+        //                      5
+//                       1--------------0
+        //               | \            |     
+        //               |   \          |     
+        //               |    \       5 |
+        //             5 |      \       |
+        //               |      3 \     | 
+        //               |          \   |
+        //               |            \ | 
+        //               2--------------3
+//                       |      1
+//                     2 |
+//                       |
+//                       4
+// 
+//0 - vertex
         graph[0].add(new Edge(0, 3, 5));
 
         // //1 - vertex
-        // graph[1].add(new Edge(1, 0, 5));
-        // graph[1].add(new Edge(1, 2, 1));
-        // graph[1].add(new Edge(1, 3, 3));
+        graph[1].add(new Edge(1, 0, 5));
+        graph[1].add(new Edge(1, 2, 1));
+        graph[1].add(new Edge(1, 3, 3));
 
         //2 - vertex
-        // graph[2].add(new Edge(2, 1, 1));
+        graph[2].add(new Edge(2, 1, 1));
         graph[2].add(new Edge(2, 3, 1));
-        // graph[2].add(new Edge(2, 4, 2));
+        graph[2].add(new Edge(2, 4, 2));
 
         //3 - vertex
         graph[3].add(new Edge(3, 1, 3));
-        // graph[3].add(new Edge(3, 2, 1));
+        graph[3].add(new Edge(3, 2, 1));
 
         //4 - vertex
         graph[4].add(new Edge(4, 0, 2));
         graph[4].add(new Edge(4, 1, 2));
 
-        graph[5].add(new Edge(5, 0, 1));
-        graph[5].add(new Edge(5, 2, 1));
+        // graph[5].add(new Edge(5, 0, 1));
+        // graph[5].add(new Edge(5, 2, 1));
 
         // bfs(graph);
         // dfs(graph, 0, new boolean[V]);
         // System.out.println(hasPath(graph, 0, 4, new boolean[V]));
         // printAllPath(graph, 5, 1, "");
-        bellmanFord(graph, 2);
+        // bellmanFord(graph, 2);
         // System.out.println(dectectCycleInUnDirGraph(graph));
     }
 }
